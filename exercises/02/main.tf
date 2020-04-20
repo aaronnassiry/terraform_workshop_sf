@@ -7,9 +7,15 @@ provider "aws" {
   version = "~> 2.0"
 }
 
-# declare a resource stanza so we can create something.
-resource "aws_s3_bucket_object" "user_student_alias_object" {
-  bucket  = "dws-di-${var.student_alias}"
-  key     = "student.alias"
-  content = "This bucket is reserved for ${var.student_alias}"
+resource "aws_s3_bucket" "b" {
+  bucket        = "jk-di-${var.student_alias}"
+  acl           = "public-read-write"
+  force_destroy = true
 }
+
+# declare a resource stanza so we can create something.
+# resource "aws_s3_bucket_object" "user_student_alias_object" {
+#  bucket  = "dws-di-${var.student_alias}"
+#  key     = "student.alias"
+#  content = "This bucket is reserved for ${var.student_alias}"
+# }
